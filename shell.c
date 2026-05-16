@@ -2,10 +2,12 @@
 
 /**
  * main - simple UNIX command line interpreter
+ * @argc: number of arguments
+ * @argv: array of arguments
  *
  * Return: Always 0
  */
-int main(void)
+int main(int argc, char **argv)
 {
 	char *line;
 	size_t len;
@@ -14,6 +16,7 @@ int main(void)
 	int status;
 	char *args[2];
 
+	(void)argc;
 	line = NULL;
 	len = 0;
 
@@ -30,10 +33,11 @@ int main(void)
 			exit(0);
 		}
 
-		if (line[nread - 1] == '\n')
-			line[nread - 1] = '\0';
+		args[0] = strtok(line, " \t\n");
 
-		args[0] = line;
+		if (args[0] == NULL)
+			continue;
+
 		args[1] = NULL;
 
 		pid = fork();
@@ -49,7 +53,7 @@ int main(void)
 		{
 			if (execve(args[0], args, environ) == -1)
 			{
-				perror("./shell");
+				perror(argv[0]);
 				exit(1);
 			}
 		}
