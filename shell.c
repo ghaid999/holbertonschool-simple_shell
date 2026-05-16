@@ -6,7 +6,6 @@
  *
  * Return: Nothing
  */
- 
 void execute_command(char **args)
 {
 	pid_t child_pid;
@@ -35,6 +34,54 @@ void execute_command(char **args)
 }
 
 /**
+ * read_input - Reads a line from standard input
+ * @line: Buffer that stores the input
+ * @line_size: Size of the input buffer
+ *
+ * Return: 1 on success, 0 on EOF
+ */
+int read_input(char **line, size_t *line_size)
+{
+	ssize_t chars_read;
+
+	chars_read = getline(line, line_size, stdin);
+
+	if (chars_read == -1)
+	{
+		if (isatty(STDIN_FILENO))
+			printf("\n");
+
+		return (0);
+	}
+
+	return (1);
+}
+
+/**
+ * parse_arguments - Splits the command line into arguments
+ * @line: Input line entered by the user
+ * @args: Array to store command and arguments
+ *
+ * Return: Nothing
+ */
+void parse_arguments(char *line, char **args)
+{
+	char *token;
+	int i = 0;
+
+	token = strtok(line, " \t\n");
+
+	while (token != NULL && i < 63)
+	{
+		args[i] = token;
+		i++;
+		token = strtok(NULL, " \t\n");
+	}
+
+	args[i] = NULL;
+}
+
+/**
  * main - Entry point for the simple shell
  *
  * Return: Always 0
@@ -43,10 +90,7 @@ int main(void)
 {
 	char *line = NULL;
 	size_t line_size = 0;
-	ssize_t chars_read;
 	char *args[64];
-	char *token;
-	int i;
 
 	while (1)
 	{
@@ -56,28 +100,13 @@ int main(void)
 			fflush(stdout);
 		}
 
-		chars_read = getline(&line, &line_size, stdin);
-
-		if (chars_read == -1)
+		if (read_input(&line, &line_size) == 0)
 		{
-			if (isatty(STDIN_FILENO))
-				printf("\n");
-
 			free(line);
 			exit(0);
 		}
 
-		i = 0;
-		token = strtok(line, " \t\n");
-
-		while (token != NULL && i < 63)
-		{
-			args[i] = token;
-			i++;
-			token = strtok(NULL, " \t\n");
-		}
-
-		args[i] = NULL;
+		parse_arguments(line, args);
 
 		if (args[0] == NULL)
 			continue;
