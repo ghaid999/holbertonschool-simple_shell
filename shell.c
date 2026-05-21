@@ -124,7 +124,7 @@ int main(void)
 		if (args[0] == NULL)
 			continue;
 
-		execute_command(args);
+		execute_command(args, argv[0]);
 	}
 
 	free(line);
