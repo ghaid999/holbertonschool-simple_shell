@@ -1,8 +1,29 @@
 #include "main.h"
 
 /**
+ * get_path_env - Gets the PATH value from environ manually
+ *
+ * Return: pointer to the PATH value string, or NULL
+ */
+static char *get_path_env(void)
+{
+	int i;
+
+	for (i = 0; environ[i] != NULL; i++)
+	{
+		if (environ[i][0] == 'P' &&
+		    environ[i][1] == 'A' &&
+		    environ[i][2] == 'T' &&
+		    environ[i][3] == 'H' &&
+		    environ[i][4] == '=')
+			return (environ[i] + 5);
+	}
+	return (NULL);
+}
+
+/**
  * find_in_path - Searches for a command in the PATH directories
- * @command: The command name to search for (e.g. "ls")
+ * @command: The command name to search for 
  *
  * Return: Full path string if found (must be freed), NULL if not found
  */
@@ -23,7 +44,7 @@ char *find_in_path(char *command)
 	}
 
 	/* Get the PATH environment variable */
-	path_env = getenv("PATH");
+	path_env = get_path_env();
 	if (path_env == NULL || path_env[0] == '\0')
 		return (NULL);
 
