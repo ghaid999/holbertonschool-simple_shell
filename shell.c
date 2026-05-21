@@ -99,8 +99,9 @@ void parse_arguments(char *line, char **args)
  *
  * Return: Always 0
  */
-int main(void)
+int main(int argc, char **argv)
 {
+	(void)argc; 
 	char *line = NULL;
 	size_t line_size = 0;
 	char *args[64];
