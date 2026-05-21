@@ -13,5 +13,6 @@ extern char **environ;
 void execute_command(char **args);
 int read_input(char **line, size_t *line_size);
 void parse_arguments(char *line, char **args);
+char *find_in_path(char *command);
 
 #endif
