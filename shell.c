@@ -78,9 +78,10 @@ int read_input(char **line, size_t *line_size)
 void parse_arguments(char *line, char **args)
 {
 	char *token;
-	int i = 0;
+	int i;
 	int len;
-
+	
+    i = 0;
 	len = strlen(line);
 	if (len > 0 && line[len - 1] == '\n')
 		line[len - 1] = '\0';
