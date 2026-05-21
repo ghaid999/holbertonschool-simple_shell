@@ -6,16 +6,27 @@
  *
  * Return: Nothing
  */
-void execute_command(char **args)
+void execute_command(char **args, char *prog_name)
 {
 	pid_t child_pid;
 	int status;
+	char *cmd_path;
 
+	cmd_path = find_in_path(args[0]);
+	if (cmd_path == NULL)
+	{
+		fprintf(stderr, "%s: 1: %s: not found\n", prog_name, args[0]);
+		return;
+	}
+
+
+	
 	child_pid = fork();
 
 	if (child_pid == -1)
 	{
 		perror("fork");
+		free(cmd_path);
 		return;
 	}
 
@@ -24,6 +35,7 @@ void execute_command(char **args)
 		if (execve(args[0], args, environ) == -1)
 		{
 			perror(args[0]);
+			free(cmd_path);
 			exit(1);
 		}
 	}
@@ -31,6 +43,7 @@ void execute_command(char **args)
 	{
 		wait(&status);
 	}
+	free(cmd_path);
 }
 
 /**
