@@ -121,7 +121,7 @@ int main(int argc, char **argv)
 		if (read_input(&line, &line_size) == 0)
 		{
 			free(line);
-			exit(0);
+			exit(last_status);
 		}
 
 		parse_arguments(line, args);
@@ -129,9 +129,9 @@ int main(int argc, char **argv)
 		if (args[0] == NULL)
 			continue;
 
-		execute_command(args, argv[0]);
+		last_status = execute_command(args, argv[0]);
 	}
 
 	free(line);
-	return (0);
+	return (last_status);
 }
