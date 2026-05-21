@@ -6,7 +6,7 @@
  *
  * Return: Nothing
  */
-void execute_command(char **args, char *prog_name)
+int execute_command(char **args, char *prog_name)
 {
 	pid_t child_pid;
 	int status;
