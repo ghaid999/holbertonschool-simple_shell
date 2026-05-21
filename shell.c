@@ -128,9 +128,13 @@ int main(int argc, char **argv)
 		}
 
 		parse_arguments(line, args);
-
 		if (args[0] == NULL)
 			continue;
+		if (strcmp(args[0], "exit") == 0)
+		{
+			free(line);
+			exit(last_status);
+		}
 
 		last_status = execute_command(args, argv[0]);
 	}
