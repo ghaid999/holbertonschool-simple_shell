@@ -32,7 +32,7 @@ void execute_command(char **args, char *prog_name)
 
 	if (child_pid == 0)
 	{
-		if (execve(args[0], args, environ) == -1)
+		if (execve(cmd_path, args, environ) == -1)
 		{
 			perror(args[0]);
 			free(cmd_path);
