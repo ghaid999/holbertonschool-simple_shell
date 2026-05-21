@@ -108,6 +108,9 @@ int main(int argc, char **argv)
 	char *line = NULL;
 	size_t line_size = 0;
 	char *args[64];
+	int last_status;
+
+	last_status = 0;
 	(void)argc; 
 
 	while (1)
