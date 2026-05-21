@@ -81,6 +81,11 @@ void parse_arguments(char *line, char **args)
 {
 	char *token;
 	int i = 0;
+	int len;
+
+	len = strlen(line);
+	if (len > 0 && line[len - 1] == '\n')
+		line[len - 1] = '\0';
 
 	token = strtok(line, " \t\n");
 
