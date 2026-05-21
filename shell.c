@@ -16,18 +16,15 @@ void execute_command(char **args, char *prog_name)
 	if (cmd_path == NULL)
 	{
 		fprintf(stderr, "%s: 1: %s: not found\n", prog_name, args[0]);
-		return;
+		return (127);
 	}
 
-
-	
 	child_pid = fork();
-
 	if (child_pid == -1)
 	{
 		perror("fork");
 		free(cmd_path);
-		return;
+		return (1);
 	}
 
 	if (child_pid == 0)
@@ -36,14 +33,15 @@ void execute_command(char **args, char *prog_name)
 		{
 			perror(args[0]);
 			free(cmd_path);
-			exit(1);
+			_exit(127);
 		}
 	}
 	else
 	{
-		wait(&status);
+		waitpid(child_pid, &status, 0);
 	}
 	free(cmd_path);
+	return (WEXITSTATUS(status));
 }
 
 /**
