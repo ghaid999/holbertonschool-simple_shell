@@ -99,6 +99,21 @@ void parse_arguments(char *line, char **args)
 }
 
 /**
+ * print_env - Prints all environment variables
+ *
+ * Return: Nothing
+ */
+void print_env(void)
+{
+	int i;
+
+	for (i = 0; environ[i] != NULL; i++)
+	{
+		printf("%s\n", environ[i]);
+	}
+}
+
+/**
  * main - Entry point for the simple shell
  *
  * Return: Always 0
@@ -134,6 +149,11 @@ int main(int argc, char **argv)
 		{
 			free(line);
 			exit(last_status);
+		}
+		if (strcmp(args[0], "env") == 0)
+		{
+			print_env();
+			continue;
 		}
 
 		last_status = execute_command(args, argv[0]);
