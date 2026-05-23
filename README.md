@@ -77,3 +77,55 @@ write
 ```
 
 ---
+
+## Compilation / Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/ghaid999/holbertonschool-simple_shell.git
+```
+
+Move into the project directory:
+
+```bash
+cd holbertonschool-simple_shell
+```
+
+Compile the project:
+
+```bash
+gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
+```
+
+Run the shell:
+
+```bash
+./hsh
+```
+
+---
+
+## Usage
+
+After compiling the program, run it with:
+
+```bash
+./hsh
+```
+
+The shell will display a prompt and wait for the user to enter commands.
+
+Example:
+
+```bash
+$ ./hsh
+($) ls
+AUTHORS  README.md  hsh  main.h  man_1_simple_shell  path.c  shell.c
+($) pwd
+/home/user/holbertonschool-simple_shell
+($) exit
+$
+```
+
+---
