@@ -205,6 +205,8 @@ If `fork` fails, the shell prints an error message using `perror`.
 
 If `execve` fails, the child process prints an error message using `perror` and exits with status `127`.
 
+If `PATH` is unset or empty, the shell will not find any commands.
+
 If the user presses `Ctrl + D`, the shell handles the end of file, frees allocated memory, and exits safely.
 
 The shell continues running after command errors unless the user enters `exit` or sends EOF using `Ctrl + D`.
