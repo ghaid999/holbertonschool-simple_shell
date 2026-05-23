@@ -1,0 +1,131 @@
+.TH SIMPLE_SHELL 1 "May 2026" "Holberton School" "User Commands"
+
+.SH NAME
+simple_shell \- simple UNIX command line interpreter
+
+.SH SYNOPSIS
+.B ./hsh
+
+.SH DESCRIPTION
+.B simple_shell
+is a simple UNIX command line interpreter written in C.
+
+The shell reads commands from standard input, parses the command into arguments,
+searches for the executable file in the PATH environment variable, and executes
+the command using system calls such as fork, execve, and wait.
+
+The shell works in both interactive mode and non-interactive mode.
+
+.SH OPTIONS
+This shell does not support command line options.
+
+.SH INTERACTIVE MODE
+In interactive mode, the shell displays a prompt and waits for the user to enter
+a command.
+
+Example:
+
+.B
+./hsh
+
+Then type:
+
+.B
+ls
+
+.SH NON-INTERACTIVE MODE
+In non-interactive mode, commands can be passed to the shell through a pipe.
+
+Example:
+
+.B
+echo "ls" | ./hsh
+
+.SH BUILT-IN COMMANDS
+
+.TP
+.B exit
+Exits the shell.
+
+.TP
+.B env
+Prints the current environment variables.
+
+.SH EXAMPLES
+
+.TP
+Run the shell:
+.B
+./hsh
+
+.TP
+List files:
+.B
+ls
+
+.TP
+List files using full path:
+.B
+/bin/ls
+
+.TP
+Print the current working directory:
+.B
+pwd
+
+.TP
+Print environment variables:
+.B
+env
+
+.TP
+Exit the shell:
+.B
+exit
+
+.TP
+Use non-interactive mode:
+.B
+echo "ls" | ./hsh
+
+.SH FILES
+
+.TP
+.B shell.c
+Contains the main shell loop, input reading, parsing, built-ins, and command
+execution logic.
+
+.TP
+.B path.c
+Contains functions used to search for commands in the PATH.
+
+.TP
+.B main.h
+Contains function prototypes, included libraries, and external variables.
+
+.TP
+.B README.md
+Contains project documentation.
+
+.TP
+.B AUTHORS
+Contains the list of project contributors.
+
+.SH RETURN VALUE
+The shell exits with the status of the executed command.
+
+If a command is not found, the shell may return an error status.
+
+.SH BUGS
+No known bugs.
+
+.SH AUTHORS
+See the AUTHORS file.
+
+.SH SEE ALSO
+.BR sh (1),
+.BR bash (1),
+.BR execve (2),
+.BR fork (2),
+.BR wait (2),
+.BR getline (3)
