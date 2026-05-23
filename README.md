@@ -184,5 +184,77 @@ USER=user
 PATH=/usr/local/bin:/usr/bin:/bin
 HOME=/home/user
 ```
+---
+
+## Testing
+
+To test the shell, first compile it:
+
+```bash
+gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
+```
+
+Run the shell:
+
+```bash
+./hsh
+```
+
+Then test these commands:
+
+```bash
+ls
+ls -l
+pwd
+env
+/bin/ls
+exit
+```
+
+Test non-interactive mode:
+
+```bash
+echo "ls" | ./hsh
+echo "pwd" | ./hsh
+echo "env" | ./hsh
+echo "/bin/ls" | ./hsh
+```
+
+---
+
+## Flowchart
+
+Basic shell flow:
+
+```text
+Start
+  |
+  v
+Display prompt
+  |
+  v
+Read user input
+  |
+  v
+Parse command and arguments
+  |
+  v
+Check if command is built-in
+  |
+  v
+Search command in PATH
+  |
+  v
+Create child process
+  |
+  v
+Execute command
+  |
+  v
+Wait for child process
+  |
+  v
+Repeat until exit or EOF
+```
 
 ---
