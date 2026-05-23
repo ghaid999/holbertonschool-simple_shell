@@ -129,3 +129,60 @@ $
 ```
 
 ---
+
+## Built-in Commands
+
+| Command | Description |
+| --- | --- |
+| `env` | Prints the current environment variables |
+| `exit` | Exits the shell |
+
+---
+
+## Examples
+
+### Interactive Mode
+
+Interactive mode means the user runs the shell and types commands manually.
+
+```bash
+$ ./hsh
+($) ls
+AUTHORS  README.md  hsh  main.h  man_1_simple_shell  path.c  shell.c
+($) /bin/ls
+AUTHORS  README.md  hsh  main.h  man_1_simple_shell  path.c  shell.c
+($) pwd
+/home/user/holbertonschool-simple_shell
+($) env
+USER=user
+PATH=/usr/local/bin:/usr/bin:/bin
+($) exit
+$
+```
+
+### Non-Interactive Mode
+
+Non-interactive mode means commands are passed to the shell using a pipe.
+
+```bash
+$ echo "ls" | ./hsh
+AUTHORS  README.md  hsh  main.h  man_1_simple_shell  path.c  shell.c
+```
+
+Example using a full path:
+
+```bash
+$ echo "/bin/ls" | ./hsh
+AUTHORS  README.md  hsh  main.h  man_1_simple_shell  path.c  shell.c
+```
+
+Example using `env`:
+
+```bash
+$ echo "env" | ./hsh
+USER=user
+PATH=/usr/local/bin:/usr/bin:/bin
+HOME=/home/user
+```
+
+---
