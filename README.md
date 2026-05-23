@@ -282,5 +282,6 @@ man ./man_1_simple_shell
 
 ---
 ## Authors
-Abdulrhman Alsalhi
-Gheed Alhosenine
+
+- Abdulrhman Alsalhi
+- Gheed Alhosenine
