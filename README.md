@@ -24,3 +24,56 @@ The shell works in both interactive mode and non-interactive mode.
 - Supports the `exit` built-in
 
 ---
+
+## Requirements
+
+- Ubuntu 20.04 LTS
+- GCC compiler
+- Betty coding style
+- Allowed editors: `vi`, `vim`, `emacs`
+- All files must end with a new line
+- Header files must use include guards
+- No memory leaks
+- No more than 5 functions per file
+
+---
+
+## Allowed Functions and System Calls
+
+The project may use the following functions and system calls:
+
+```c
+access
+chdir
+close
+closedir
+execve
+exit
+_exit
+fflush
+fork
+free
+getcwd
+getline
+getpid
+isatty
+kill
+malloc
+open
+opendir
+perror
+read
+readdir
+signal
+stat
+lstat
+fstat
+strtok
+wait
+waitpid
+wait3
+wait4
+write
+```
+
+---
