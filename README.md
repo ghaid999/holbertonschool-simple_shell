@@ -258,3 +258,26 @@ Repeat until exit or EOF
 ```
 
 ---
+
+## Files
+
+| File | Description |
+| --- | --- |
+| `shell.c` | Contains the main shell loop and command execution logic |
+| `path.c` | Handles searching for commands in the `PATH` |
+| `main.h` | Header file containing prototypes and included libraries |
+| `README.md` | Project documentation |
+| `AUTHORS` | List of project contributors |
+| `man_1_simple_shell` | Manual page for the shell |
+
+---
+
+## Man Page
+
+To read the manual page, run:
+
+```bash
+man ./man_1_simple_shell
+```
+
+---
