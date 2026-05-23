@@ -135,7 +135,7 @@ $
 | Command | Description |
 | --- | --- |
 | `env` | Prints the current environment variables |
-| `exit` | Exits the shell |
+| `exit [status]` | Exits the shell with an optional status code |
 
 ---
 
