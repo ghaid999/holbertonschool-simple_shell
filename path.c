@@ -23,7 +23,7 @@ static char *get_path_env(void)
 
 /**
  * find_in_path - Searches for a command in the PATH directories
- * @command: The command name to search for 
+ * @command: The command name to search for
  *
  * Return: Full path string if found (must be freed), NULL if not found
  */

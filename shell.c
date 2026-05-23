@@ -3,8 +3,9 @@
 /**
  * execute_command - Executes a command using execve
  * @args: Array of command and its arguments
+ * @prog_name: Name of the shell program
  *
- * Return: Nothing
+ * Return: Exit status of the executed command
  */
 int execute_command(char **args, char *prog_name)
 {
@@ -40,6 +41,7 @@ int execute_command(char **args, char *prog_name)
 	{
 		waitpid(child_pid, &status, 0);
 	}
+
 	free(cmd_path);
 	return (WEXITSTATUS(status));
 }
@@ -80,9 +82,10 @@ void parse_arguments(char *line, char **args)
 	char *token;
 	int i;
 	int len;
-	
-    i = 0;
+
+	i = 0;
 	len = strlen(line);
+
 	if (len > 0 && line[len - 1] == '\n')
 		line[len - 1] = '\0';
 
@@ -108,15 +111,15 @@ void print_env(void)
 	int i;
 
 	for (i = 0; environ[i] != NULL; i++)
-	{
 		printf("%s\n", environ[i]);
-	}
 }
 
 /**
  * main - Entry point for the simple shell
+ * @argc: Argument count
+ * @argv: Argument vector
  *
- * Return: Always 0
+ * Return: Last command exit status
  */
 int main(int argc, char **argv)
 {
@@ -126,7 +129,7 @@ int main(int argc, char **argv)
 	int last_status;
 
 	last_status = 0;
-	(void)argc; 
+	(void)argc;
 
 	while (1)
 	{
@@ -143,13 +146,16 @@ int main(int argc, char **argv)
 		}
 
 		parse_arguments(line, args);
+
 		if (args[0] == NULL)
 			continue;
+
 		if (strcmp(args[0], "exit") == 0)
 		{
 			free(line);
 			exit(last_status);
 		}
+
 		if (strcmp(args[0], "env") == 0)
 		{
 			print_env();

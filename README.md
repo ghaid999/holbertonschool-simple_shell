@@ -186,6 +186,31 @@ HOME=/home/user
 ```
 ---
 
+## Error Handling
+
+The shell handles basic errors and keeps running when possible.
+
+If the user enters a command that does not exist, the shell prints an error message and returns status `127`.
+
+Example:
+
+```bash
+$ ./hsh
+($) wrongcommand
+./hsh: 1: wrongcommand: not found
+($)
+```
+
+If `fork` fails, the shell prints an error message using `perror`.
+
+If `execve` fails, the child process prints an error message using `perror` and exits with status `127`.
+
+If the user presses `Ctrl + D`, the shell handles the end of file, frees allocated memory, and exits safely.
+
+The shell continues running after command errors unless the user enters `exit` or sends EOF using `Ctrl + D`.
+
+---
+
 ## Testing
 
 To test the shell, first compile it:
